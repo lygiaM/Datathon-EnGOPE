@@ -1,0 +1,34 @@
+Olá, participantes!
+
+Esperamos que estejam bem e aproveitando o desafio do Datathon!
+
+Compartilhamos a rubrica de avaliação que será utilizada pela banca para avaliar as soluções desenvolvidas pelas equipes. A pontuação será atribuída de 0 a 10 em cada critério, considerando os seguintes pesos
+
+Critérios de avaliação por trilha
+
+Compreensão do problema 10%
+
+Metodologia e modelagem 25%
+
+Aplicabilidade e impacto no negócio 20%
+
+Comunicação dos resultados 20%
+
+Inovação e criatividade 25%
+
+Pesos das trilhas na nota final
+
+Trilha 1 — Rotatividade 30%
+
+Trilha 2 — Folguistas e feristas 30%
+
+Trilha 3 — Escala 6x1 40%
+
+Para serem selecionadas para a etapa de apresentação, as equipes deverão concluir pelo menos duas das três trilhas propostas.
+
+O tempo destinado à apresentação será definido de acordo com a quantidade de equipes selecionadas para essa etapa, respeitando o cronograma do evento. As orientações sobre a duração e a organização das apresentações serão compartilhadas oportunamente.
+
+Desejamos a todas as equipes um excelente trabalho! Estamos à disposição para esclarecer eventuais dúvidas.
+
+Atenciosamente,
+Organização do Datathon IME-UFG
