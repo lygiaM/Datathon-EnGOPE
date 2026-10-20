@@ -1,6 +1,6 @@
 # Regras do III Datathon IME-UFG (VII ENGOPE)
 
-Fontes: `regulamento_iii_datathon_2026.pdf`, `Critérios de avaliação.txt` e `Instrucoes_Datathon_UFG.pdf`.
+Fontes: `regulamento_iii_datathon_2026.pdf` e `Critérios de avaliação.txt` (nesta pasta) e `../enunciado/Instrucoes_Datathon_UFG.pdf`.
 
 ## Cronograma
 
