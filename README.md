@@ -34,6 +34,10 @@ Prazo de submissão: **21/10 às 19h00**. Enviar por e-mail um PDF de até 10 p�
 
 ## Como executar
 
+**Forma mais simples (arquivo único, enviado na submissão):** `pip install pandas numpy` e `python solucao_datathon.py`, com os CSVs em `dados/`. O script reproduz todos os resultados de `resultados/` em menos de 1 minuto.
+
+**Notebooks (com gráficos e texto):**
+
 1. `pip install -r requirements.txt`
 2. Colocar os CSVs fornecidos em `dados/` (a pasta não vai no pacote de entrega, porque a organização já tem os dados).
 3. Rodar os notebooks de `notebooks/` em ordem: `01` perfil dos dados, `02` Trilha 1, `03` Trilha 2, `04` Trilha 3, `05` modelo integrado. Cada um lê `../dados` e os resultados anteriores em `../resultados`, e grava os seus em `../resultados`. A ordem importa porque o `05` lê os resultados dos `02` a `04`.
