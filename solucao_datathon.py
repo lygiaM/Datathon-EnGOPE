@@ -11,6 +11,9 @@ COMO EXECUTAR
     Os CSVs fornecidos pela organização devem estar na pasta `dados/`, ao lado deste arquivo.
     Os resultados são gravados em `resultados/` (criada automaticamente). Tempo de execução: menos de 1 minuto.
 
+    GRÁFICOS (opcional): com `pip install matplotlib`, os gráficos são salvos como PNG em `figuras/`.
+    Sem o matplotlib, o script roda normalmente e só pula os gráficos.
+
 ORGANIZAÇÃO DO ARQUIVO
     Parte A. Funções reutilizáveis (rotatividade, ausências, escala, modelo integrado).
     Parte B. Trilha 1: série mensal, diagnóstico, backtest de estratégias e projeção.
@@ -29,6 +32,17 @@ import pandas as pd
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))   # executa a partir da pasta do script (dados/ e resultados/ ao lado)
 os.makedirs('resultados', exist_ok=True)
+
+try:                                                     # gráficos são opcionais: o cálculo não depende deles
+    import matplotlib
+    matplotlib.use('Agg')                                # salva em arquivo, sem abrir janelas
+    import matplotlib.pyplot as plt
+    plt.rcParams.update({'figure.dpi': 100, 'axes.grid': True, 'grid.alpha': .3})
+    os.makedirs('figuras', exist_ok=True)
+    TEM_MPL = True
+except ImportError:
+    TEM_MPL = False
+    print('matplotlib não instalado: os gráficos serão pulados (os resultados não mudam).')
 pd.set_option('display.width', 200); pd.set_option('display.max_columns', 40); pd.set_option('display.max_rows', 100)
 
 
@@ -482,7 +496,21 @@ for e, d in S.items():
 anual = pd.DataFrame(linhas)
 print(anual.pivot(index='ano', columns='empresa', values='turnover_anual_%').round(1), end="\n\n")
 print(anual.pivot(index='ano', columns='empresa', values='hc_medio').round(0), end="\n\n")
-# (gráfico omitido no script; ver a versão em notebook)
+if TEM_MPL:   # gráfico salvo em figuras/t1_01.png
+    # turnover movel de 12 meses por empresa
+    def movel12(d):
+        return d.set_index('mes').apply(lambda x: x, axis=1) if False else (
+            ((d.adm + d.resc).rolling(12).sum() / 2) / d.hc.rolling(12).mean() * 100).set_axis(d.mes)
+
+    fig, ax = plt.subplots(1, 2, figsize=(13, 4))
+    for e, cor in ((5, 'C0'), (8, 'C1')):
+        movel12(S[e]).loc['2017':].plot(ax=ax[0], label=f'empresa {e}', color=cor)
+    ax[0].set_title('Turnover móvel 12 meses (%): empresas estáveis'); ax[0].legend()
+    for e, cor in ((6, 'C2'), (3, 'C3'), (7, 'C4')):
+        movel12(S[e]).loc['2019':].plot(ax=ax[1], label=f'empresa {e}', color=cor)
+    ax[1].set_title('Turnover móvel 12 meses (%): empresas com mudanças de regime'); ax[1].legend()
+    for a in ax: a.set_xlabel('')
+    plt.tight_layout(); plt.savefig('figuras/t1_01.png', dpi=130, bbox_inches='tight'); plt.close('all')
 
 # **Leitura:**
 #
@@ -520,7 +548,10 @@ risco = pd.DataFrame({f'empresa {e}': risco_por_faixa(painel, e, origem) * 100 f
                      index=ROTULOS_FAIXAS).round(1)
 risco.index.name = 'meses de casa'
 print(risco, end="\n\n")
-# (gráfico omitido no script; ver a versão em notebook)
+if TEM_MPL:   # gráfico salvo em figuras/t1_02.png
+    ax = risco[['empresa 5', 'empresa 6', 'empresa 8']].plot(kind='bar', figsize=(9, 3.8))
+    ax.set_ylabel('% do grupo que sai no mês'); ax.set_title('Risco mensal de saída por tempo de casa'); plt.xticks(rotation=0)
+    plt.tight_layout(); plt.savefig('figuras/t1_02.png', dpi=130, bbox_inches='tight'); plt.close('all')
 
 # **O tempo de casa importa muito.** Na empresa 6, quem está no 3º mês de casa tem ~22% de chance de sair
 # naquele mês, contra ~1,7% para quem tem mais de 5 anos. Na empresa 8 o padrão é parecido, mas mais suave
@@ -755,7 +786,14 @@ print(pd.DataFrame(linhas).set_index('empresa').round(1), end="\n\n")
 # (contratações de 2026), e esse grupo tem risco alto de saída. Na empresa 8 o modelo também fica acima
 # (31–33% contra 28,5%) e, na 5, abaixo ou igual. É um argumento para olhar a **parte alta da faixa** nas
 # empresas 6 e 8.
-# (gráfico omitido no script; ver a versão em notebook)
+if TEM_MPL:   # gráfico salvo em figuras/t1_03.png
+    ok = proj.dropna(subset=['turnover_base_%'])
+    fig, ax = plt.subplots(figsize=(9, 4))
+    x = np.arange(len(ok)); ax.bar(x, ok['turnover_base_%'], color='C0', alpha=.8, label='base (média 36m)')
+    ax.errorbar(x, ok['turnover_base_%'], yerr=[ok['turnover_base_%'] - ok['contrato_baixo_%'], ok['contrato_alto_%'] - ok['turnover_base_%']],
+                fmt='none', ecolor='k', capsize=4, label='faixa P10-P90 (contrato 3 anos)')
+    ax.set_xticks(x); ax.set_xticklabels([f'empresa {e}' for e in ok.index]); ax.set_ylabel('turnover anual (%)')
+    ax.set_title('Projeção de turnover por empresa'); ax.legend(); plt.tight_layout(); plt.savefig('figuras/t1_03.png', dpi=130, bbox_inches='tight'); plt.close('all')
 # salva o resultado
 import os; os.makedirs('resultados', exist_ok=True)
 proj.round(2).to_csv('resultados/trilha1_projecao.csv', encoding='utf-8-sig')
@@ -848,7 +886,18 @@ print(cob, end="\n\n")
 # ## 2. Limpeza do ponto
 ponto, rel = limpar_ponto(ponto_bruto)
 print(rel, end="\n\n")
-# (gráfico omitido no script; ver a versão em notebook)
+if TEM_MPL:   # gráfico salvo em figuras/t2_01.png
+    # efeito da limpeza: falta diaria (% dos programados sem trabalhar e sem abono) nas empresas 3 e 8
+    def falta_diaria(d, emp):
+        x = d[(d.empresa == emp) & (d.MINUTOS_PREVISTOS > 0) & d.bloco_dia.isna() & (d.FERIADO == 0)]
+        return (x.MINUTOS_FALTA >= .9 * x.MINUTOS_PREVISTOS).groupby(x.DATA).mean()
+
+    fig, ax = plt.subplots(1, 2, figsize=(13, 3.6), sharey=True)
+    for a, emp in zip(ax, (3, 8)):
+        falta_diaria(ponto_bruto, emp).loc['2025-01-01':'2025-05-31'].plot(ax=a, color='C3', label='antes da limpeza')
+        falta_diaria(ponto, emp).loc['2025-01-01':'2025-05-31'].plot(ax=a, color='C0', label='depois')
+        a.set_title(f'Empresa {emp}: % de programados com falta total, por dia'); a.set_xlabel(''); a.legend()
+    plt.tight_layout(); plt.savefig('figuras/t2_01.png', dpi=130, bbox_inches='tight'); plt.close('all')
 
 # Dois problemas de dados foram encontrados, e ambos distorceriam as taxas:
 #
@@ -1014,7 +1063,10 @@ var_obs, var_bin = dia.p.var(), p_med * (1 - p_med) / n_med
 SIGMA2 = max(0, var_obs - var_bin)
 print(pd.Series({'dias analisados': len(dia), 'ausência curta média diária': p_med, 'P95 empírico': dia.p.quantile(.95), 'P99 empírico': dia.p.quantile(.99),
            'variância observada': var_obs, 'variância se fossem independentes (binomial)': var_bin, 'choque comum (desvio)': SIGMA2 ** .5}).round(4).to_frame('valor'), end="\n\n")
-# (gráfico omitido no script; ver a versão em notebook)
+if TEM_MPL:   # gráfico salvo em figuras/t2_02.png
+    ax = dia.p.mul(100).plot(figsize=(11, 3.2), lw=.8); ax.axhline(p_med * 100, color='k', ls='--', lw=1)
+    ax.axhline(dia.p.quantile(.95) * 100, color='C3', ls=':', lw=1); ax.set_title('Ausência curta diária (% da carga) — população operacional'); ax.set_xlabel(''); ax.set_ylabel('%')
+    plt.tight_layout(); plt.savefig('figuras/t2_02.png', dpi=130, bbox_inches='tight'); plt.close('all')
 # reserva extra (p.p. acima da media) para cobrir o dia com nivel de servico escolhido
 from statistics import NormalDist
 niveis = [.90, .95, .99]
@@ -1181,7 +1233,13 @@ print(w.round(1), end="\n\n")
 # O afastamento prolongado (~4% a 5%) costuma ser coberto por contratação temporária e não por folguista
 # fixo. Se o contrato não exigir cobrir esse bloco, o quadro extra cai em ~6 p.p. (de 21,6% para ~15,5% na
 # empresa 5, por exemplo)
-# (gráfico omitido no script; ver a versão em notebook)
+if TEM_MPL:   # gráfico salvo em figuras/t2_03.png
+    cen3 = por_empresa.groupby(['empresa', 'cenario']).extra_pct.mean().unstack()[['baixo', 'base', 'alto']]
+    fig, ax = plt.subplots(figsize=(9, 3.8)); x = np.arange(len(cen3))
+    ax.bar(x, cen3.base, color='C0', alpha=.85, label='base')
+    ax.errorbar(x, cen3.base, yerr=[cen3.base - cen3.baixo, cen3.alto - cen3.base], fmt='none', ecolor='k', capsize=4, label='faixa baixo–alto')
+    ax.set_xticks(x); ax.set_xticklabels([f'empresa {e}' for e in cen3.index]); ax.set_ylabel('% de integrantes a mais'); ax.legend()
+    ax.set_title('Quadro extra para cobrir ausências (média dos 3 anos)'); plt.tight_layout(); plt.savefig('figuras/t2_03.png', dpi=130, bbox_inches='tight'); plt.close('all')
 # sensibilidade ao nivel de servico (base, empresa a empresa, media dos 3 anos)
 sens = {}
 for nv in (.90, .95, .99):
@@ -1405,7 +1463,14 @@ print(pd.DataFrame(dec).set_index('empresa').round(2), end="\n\n")
 # **Decomposição (Trilha 2).** Na empresa 6, a perda por ausência é de ~16%: dos 125 integrantes a mais
 # (jornada diária mantida), **~105 são posições** e **~19 são cobertura de ausências**. A parte de cobertura
 # aparece porque o fator multiplica a folha inteira, e a folha já contém os folguistas e feristas.
-# (gráfico omitido no script; ver a versão em notebook)
+if TEM_MPL:   # gráfico salvo em figuras/t3_01.png
+    fig, ax = plt.subplots(figsize=(9, 3.8))
+    emps = tab.index[:-1]; x = np.arange(len(emps)); w = .26
+    for k, cen in enumerate(cenarios):
+        ax.bar(x + (k - 1) * w, tab.loc[emps, ('B', cen)].values, w, label=cen, alpha=.85)
+        ax.bar(x + (k - 1) * w, tab.loc[emps, ('A', cen)].values, w, color='k', alpha=.55, label='população A (6x1 no cadastro)' if k == 0 else None)
+    ax.set_xticks(x); ax.set_xticklabels([f'empresa {e}' for e in emps]); ax.set_ylabel('integrantes a mais'); ax.legend(fontsize=8)
+    ax.set_title('Quadro adicional por cenário (barra escura = população A; barra colorida = população B)'); plt.tight_layout(); plt.savefig('figuras/t3_01.png', dpi=130, bbox_inches='tight'); plt.close('all')
 
 # ## 5. Efeito na rotatividade
 # O cadastro nao permite estimar o efeito da escala na rotatividade (secao 1). Entra como sensibilidade sobre o turnover da Trilha 1.
@@ -1675,7 +1740,18 @@ print(torn.round(1), end="\n\n")
 #   de extrapolação, que é o número mais honesto para as empresas sem dado.
 # - **Prazo de reposição (15 a 60 dias):** de −3,5 a +6,9 na empresa 6. É premissa.
 # - **Rotatividade (T1, limite alto):** no máximo +2,1.
-# (gráfico omitido no script; ver a versão em notebook)
+if TEM_MPL:   # gráfico salvo em figuras/integrado_01.png
+    fatores = ['a (T2): faixa', 'a (T2): extrapolação', 'turnover (T1)', 'população 6x1', 'jornada', 'prazo de reposição']
+    oscil = pd.DataFrame({
+        'a (T2): faixa': torn['a (T2): alto'] - torn['a (T2): baixo'],
+        'a (T2): extrapolação': torn['a (T2): extrapolação +1σ'] - torn['a (T2): extrapolação −1σ'],
+        'turnover (T1)': torn['turnover (T1): alto'].abs(),
+        'população 6x1': torn['população 6x1: B em vez de A'].abs(),
+        'jornada': torn['jornada: carga semanal mantida'].abs(),
+        'prazo de reposição': torn['prazo de reposição: 60 dias'] - torn['prazo de reposição: 15 dias']})
+    ax = oscil[fatores].plot(kind='bar', stacked=False, figsize=(10, 3.8))
+    ax.set_ylabel('oscilação (pessoas por 100 posições)'); ax.set_xlabel('empresa'); ax.set_title('Qual premissa mais mexe na folha, por empresa')
+    plt.xticks(rotation=0); plt.tight_layout(); plt.savefig('figuras/integrado_01.png', dpi=130, bbox_inches='tight'); plt.close('all')
 
 # O gráfico mostra que a fonte dominante de incerteza **depende da empresa**:
 #
