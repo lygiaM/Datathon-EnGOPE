@@ -1,0 +1,37 @@
+﻿empresa,populacao,cenario,folha_6x1,adicional,adicional_ic_baixo,adicional_ic_alto
+3,A,jornada diária mantida,0,0.0,0.0,0.0
+3,A,limite semanal de 40 h,0,0.0,0.0,0.0
+3,A,carga semanal mantida,0,0.0,0.0,0.0
+3,B,jornada diária mantida,0,0.0,0.0,0.0
+3,B,limite semanal de 40 h,0,0.0,0.0,0.0
+3,B,carga semanal mantida,0,0.0,0.0,0.0
+4,A,jornada diária mantida,1,0.197,0.195,0.198
+4,A,limite semanal de 40 h,1,0.1,0.1,0.1
+4,A,carga semanal mantida,1,0.0,0.0,0.0
+4,B,jornada diária mantida,1,0.197,0.195,0.198
+4,B,limite semanal de 40 h,1,0.1,0.1,0.1
+4,B,carga semanal mantida,1,0.0,0.0,0.0
+5,A,jornada diária mantida,1,0.197,0.195,0.198
+5,A,limite semanal de 40 h,1,0.1,0.1,0.1
+5,A,carga semanal mantida,1,0.0,0.0,0.0
+5,B,jornada diária mantida,1181,232.428,230.658,233.84
+5,B,limite semanal de 40 h,1181,118.1,118.1,118.1
+5,B,carga semanal mantida,1181,0.0,0.0,0.0
+6,A,jornada diária mantida,634,124.775,123.825,125.533
+6,A,limite semanal de 40 h,634,63.4,63.4,63.4
+6,A,carga semanal mantida,634,0.0,0.0,0.0
+6,B,jornada diária mantida,634,124.775,123.825,125.533
+6,B,limite semanal de 40 h,634,63.4,63.4,63.4
+6,B,carga semanal mantida,634,0.0,0.0,0.0
+7,A,jornada diária mantida,30,5.904,5.859,5.94
+7,A,limite semanal de 40 h,30,3.0,3.0,3.0
+7,A,carga semanal mantida,30,0.0,0.0,0.0
+7,B,jornada diária mantida,30,5.904,5.859,5.94
+7,B,limite semanal de 40 h,30,3.0,3.0,3.0
+7,B,carga semanal mantida,30,0.0,0.0,0.0
+8,A,jornada diária mantida,70,13.776,13.671,13.86
+8,A,limite semanal de 40 h,70,7.0,7.0,7.0
+8,A,carga semanal mantida,70,0.0,0.0,0.0
+8,B,jornada diária mantida,807,158.822,157.613,159.788
+8,B,limite semanal de 40 h,807,80.7,80.7,80.7
+8,B,carga semanal mantida,807,0.0,0.0,0.0
