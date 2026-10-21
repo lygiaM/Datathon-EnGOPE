@@ -1,0 +1,118 @@
+﻿empresa,grupo,ativos,cenario,ano,extra,perda,extra_pct
+3,Demais,113,baixo,1,14.756,0.116,13.059
+3,Demais,113,baixo,2,16.611,0.128,14.7
+3,Demais,113,baixo,3,16.497,0.127,14.599
+3,Demais,113,base,1,16.769,0.129,14.84
+3,Demais,113,base,2,18.851,0.143,16.683
+3,Demais,113,base,3,18.723,0.142,16.569
+3,Demais,113,alto,1,18.849,0.143,16.68
+3,Demais,113,alto,2,21.193,0.158,18.754
+3,Demais,113,alto,3,21.047,0.157,18.626
+4,Demais,7,baixo,1,1.798,0.204,25.693
+4,Demais,7,baixo,2,2.099,0.231,29.987
+4,Demais,7,baixo,3,2.16,0.236,30.86
+4,Demais,7,base,1,1.896,0.213,27.081
+4,Demais,7,base,2,2.222,0.241,31.742
+4,Demais,7,base,3,2.288,0.246,32.692
+4,Demais,7,alto,1,1.997,0.222,28.529
+4,Demais,7,alto,2,2.35,0.251,33.575
+4,Demais,7,alto,3,2.422,0.257,34.606
+5,Cobrador,1106,baixo,1,208.861,0.159,18.884
+5,Cobrador,1106,baixo,2,211.38,0.16,19.112
+5,Cobrador,1106,baixo,3,212.29,0.161,19.194
+5,Cobrador,1106,base,1,235.3,0.175,21.275
+5,Cobrador,1106,base,2,238.076,0.177,21.526
+5,Cobrador,1106,base,3,239.08,0.178,21.617
+5,Cobrador,1106,alto,1,260.678,0.191,23.569
+5,Cobrador,1106,alto,2,263.723,0.193,23.845
+5,Cobrador,1106,alto,3,264.823,0.193,23.944
+5,Demais,536,baixo,1,101.325,0.159,18.904
+5,Demais,536,baixo,2,102.548,0.161,19.132
+5,Demais,536,baixo,3,102.857,0.161,19.19
+5,Demais,536,base,1,114.148,0.176,21.296
+5,Demais,536,base,2,115.496,0.177,21.548
+5,Demais,536,base,3,115.837,0.178,21.611
+5,Demais,536,alto,1,126.459,0.191,23.593
+5,Demais,536,alto,2,127.937,0.193,23.869
+5,Demais,536,alto,3,128.311,0.193,23.939
+5,Motorista (caminhão e leves),3,baixo,1,0.59,0.164,19.651
+5,Motorista (caminhão e leves),3,baixo,2,0.577,0.161,19.222
+5,Motorista (caminhão e leves),3,baixo,3,0.576,0.161,19.209
+5,Motorista (caminhão e leves),3,base,1,0.664,0.181,22.12
+5,Motorista (caminhão e leves),3,base,2,0.649,0.178,21.647
+5,Motorista (caminhão e leves),3,base,3,0.649,0.178,21.632
+5,Motorista (caminhão e leves),3,alto,1,0.735,0.197,24.496
+5,Motorista (caminhão e leves),3,alto,2,0.719,0.193,23.978
+5,Motorista (caminhão e leves),3,alto,3,0.719,0.193,23.961
+5,Motorista de ônibus,1179,baixo,1,229.884,0.163,19.498
+5,Motorista de ônibus,1179,baixo,2,228.975,0.163,19.421
+5,Motorista de ônibus,1179,baixo,3,228.685,0.162,19.397
+5,Motorista de ônibus,1179,base,1,258.81,0.18,21.952
+5,Motorista de ônibus,1179,base,2,257.808,0.179,21.867
+5,Motorista de ônibus,1179,base,3,257.488,0.179,21.839
+5,Motorista de ônibus,1179,alto,1,286.635,0.196,24.312
+5,Motorista de ônibus,1179,alto,2,285.535,0.195,24.218
+5,Motorista de ônibus,1179,alto,3,285.184,0.195,24.189
+6,Demais,128,baixo,1,17.595,0.121,13.746
+6,Demais,128,baixo,2,16.743,0.116,13.081
+6,Demais,128,baixo,3,16.502,0.114,12.892
+6,Demais,128,base,1,20.983,0.141,16.393
+6,Demais,128,base,2,20.038,0.135,15.655
+6,Demais,128,base,3,19.771,0.134,15.446
+6,Demais,128,alto,1,24.539,0.161,19.171
+6,Demais,128,alto,2,23.497,0.155,18.357
+6,Demais,128,alto,3,23.202,0.153,18.127
+6,Motorista (caminhão e leves),585,baixo,1,94.26,0.139,16.113
+6,Motorista (caminhão e leves),585,baixo,2,99.003,0.145,16.924
+6,Motorista (caminhão e leves),585,baixo,3,99.781,0.146,17.057
+6,Motorista (caminhão e leves),585,base,1,106.266,0.154,18.165
+6,Motorista (caminhão e leves),585,base,2,111.374,0.16,19.038
+6,Motorista (caminhão e leves),585,base,3,112.212,0.161,19.182
+6,Motorista (caminhão e leves),585,alto,1,119.957,0.17,20.505
+6,Motorista (caminhão e leves),585,alto,2,125.43,0.177,21.441
+6,Motorista (caminhão e leves),585,alto,3,126.329,0.178,21.595
+6,Motorista de ônibus,47,baixo,1,6.321,0.119,13.45
+6,Motorista de ônibus,47,baixo,2,6.879,0.128,14.637
+6,Motorista de ônibus,47,baixo,3,6.937,0.129,14.76
+6,Motorista de ônibus,47,base,1,8.827,0.158,18.781
+6,Motorista de ônibus,47,base,2,9.494,0.168,20.2
+6,Motorista de ônibus,47,base,3,9.563,0.169,20.347
+6,Motorista de ônibus,47,alto,1,11.751,0.2,25.003
+6,Motorista de ônibus,47,alto,2,12.552,0.211,26.705
+6,Motorista de ônibus,47,alto,3,12.635,0.212,26.883
+7,Demais,45,baixo,1,10.784,0.193,23.965
+7,Demais,45,baixo,2,11.273,0.2,25.052
+7,Demais,45,baixo,3,11.334,0.201,25.186
+7,Demais,45,base,1,14.476,0.243,32.168
+7,Demais,45,base,2,15.079,0.251,33.509
+7,Demais,45,base,3,15.154,0.252,33.675
+7,Demais,45,alto,1,18.784,0.294,41.743
+7,Demais,45,alto,2,19.536,0.303,43.413
+7,Demais,45,alto,3,19.629,0.304,43.62
+8,Demais,223,baixo,1,36.385,0.14,16.316
+8,Demais,223,baixo,2,35.75,0.138,16.031
+8,Demais,223,baixo,3,35.692,0.138,16.005
+8,Demais,223,base,1,40.71,0.154,18.256
+8,Demais,223,base,2,40.026,0.152,17.949
+8,Demais,223,base,3,39.964,0.152,17.921
+8,Demais,223,alto,1,45.225,0.169,20.28
+8,Demais,223,alto,2,44.489,0.166,19.95
+8,Demais,223,alto,3,44.422,0.166,19.92
+8,Motorista (caminhão e leves),9,baixo,1,1.639,0.154,18.209
+8,Motorista (caminhão e leves),9,baixo,2,1.547,0.147,17.193
+8,Motorista (caminhão e leves),9,baixo,3,1.534,0.146,17.047
+8,Motorista (caminhão e leves),9,base,1,1.848,0.17,20.534
+8,Motorista (caminhão e leves),9,base,2,1.747,0.163,19.408
+8,Motorista (caminhão e leves),9,base,3,1.732,0.161,19.247
+8,Motorista (caminhão e leves),9,alto,1,2.049,0.185,22.772
+8,Motorista (caminhão e leves),9,alto,2,1.938,0.177,21.532
+8,Motorista (caminhão e leves),9,alto,3,1.922,0.176,21.355
+8,Motorista de ônibus,746,baixo,1,132.845,0.151,17.808
+8,Motorista de ônibus,746,baixo,2,131.858,0.15,17.675
+8,Motorista de ônibus,746,baixo,3,131.728,0.15,17.658
+8,Motorista de ônibus,746,base,1,149.625,0.167,20.057
+8,Motorista de ônibus,746,base,2,148.54,0.166,19.911
+8,Motorista de ônibus,746,base,3,148.397,0.166,19.892
+8,Motorista de ônibus,746,alto,1,165.656,0.182,22.206
+8,Motorista de ônibus,746,alto,2,164.469,0.181,22.047
+8,Motorista de ônibus,746,alto,3,164.313,0.181,22.026
